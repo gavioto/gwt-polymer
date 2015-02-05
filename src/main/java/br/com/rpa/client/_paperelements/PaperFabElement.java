@@ -16,7 +16,11 @@ public class PaperFabElement extends PaperIconButtonElement{
 		assert elem.getTagName().equalsIgnoreCase(TAG);
 		return (PaperFabElement) elem;
 	}
-
+	
+  public final native void setMini(boolean mini) /*-{
+    this.mini = mini;
+  }-*/;
+  
 	protected PaperFabElement(){}
 
 }
