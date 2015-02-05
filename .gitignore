@@ -1,0 +1,12 @@
+target/.generated/
+gwt-unitCache/
+.settings/com.google.appengine.eclipse.core.prefs
+target/gwt-polymer-0.0.1-SNAPSHOT/
+.settings/com.google.gdt.eclipse.core.prefs
+.settings/org.eclipse.core.resources.prefs
+.settings/org.eclipse.wst.common.component
+target/m2e-wtp/web-resources/META-INF/maven/
+target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
+.settings/org.eclipse.wst.common.component
+.project
+.classpath
