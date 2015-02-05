@@ -10,3 +10,5 @@ target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
 .settings/org.eclipse.wst.common.component
 .project
 .classpath
+target/gwt-polymer-0.0.1-SNAPSHOT/App.html
+target/gwt-polymer-0.0.1-SNAPSHOT/META-INF/MANIFEST.MF
