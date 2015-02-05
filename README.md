@@ -13,4 +13,6 @@ Web Components usher in a new era of web development based on encapsulated and i
 
 GWT + Polymer
 
-A simple Maven + GWT application integrating with Polymer.
+A simple Maven + GWT application integrating with Polymer. 
+
+Please run `bower install` in `src/main/webapp`  to get the polymer components
