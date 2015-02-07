@@ -15,4 +15,4 @@ GWT + Polymer
 
 A simple Maven + GWT application integrating with Polymer. 
 
-Please run `bower install` in `src/main/webapp`  to get the polymer components
+Please run `bower install` in `src/main/webapp` to get the polymer components of the test App.
