@@ -13,3 +13,7 @@ target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
 target/gwt-polymer-0.0.1-SNAPSHOT/App.html
 target/gwt-polymer-0.0.1-SNAPSHOT/META-INF/MANIFEST.MF
 src/main/webapp/bower_components/
+target/*jar
+target/*war
+.settings/org.eclipse.jdt.ui.prefs
+.settings/org.eclipse.wst.jsdt.ui.prefs
