@@ -1,59 +1,102 @@
 package br.com.rpa.client._paperelements;
 
+import br.com.rpa.client._coreelements.HasIcon;
+
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Element;
+import com.google.gwt.dom.client.Text;
+import com.google.gwt.user.client.DOM;
+import com.google.gwt.user.client.ui.HasText;
+import com.google.gwt.user.client.ui.RootPanel;
 
-public class PaperButton extends PaperFocusable {
+public class PaperButton extends PaperFocusable implements HasIcon, HasText {
 
-	public static final String STYLE = "";
+  public static final String STYLE = "";
 
-	public PaperButton() {
-		this(Document.get().createElement(PaperButtonElement.TAG), STYLE);
-	}
+  public static PaperButton wrap(final Element element) {
+    // Assert that the element is attached.
+    assert Document.get().getBody().isOrHasChild(element);
 
-	public PaperButton(Element element, String styleName){
-		super(element);
-		if (styleName != null && !styleName.equalsIgnoreCase(STYLE)) {
-			styleName = STYLE + " " + styleName;
-		}
-		setStyleName(styleName);
-	}
+    final PaperButton widget = new PaperButton(element, STYLE);
 
-	public String getLabel() {
-		return getPaperElement().getLabel();
-	}
+    // Mark it attached and remember it for cleanup.
+    widget.onAttach();
+    RootPanel.detachOnWindowClose(widget);
 
-	public void setLabel(String lbl){
-		getPaperElement().setLabel(lbl);
-	}
+    return widget;
+  }
 
-	public String getIconSrc() {
-		return getPaperElement().getIconSrc();
-	}
+  public static PaperButton wrap(final String id) {
+    return wrap(DOM.getElementById(id));
+  }
 
-	public void setIconSrc(String iconsrc) {
-		getPaperElement().setIconSrc(iconsrc);
-	}
+  private final Text textNode;
 
-	public String getIcon() {
-		return getPaperElement().getIcon();
-	}
+  public PaperButton() {
+    this(Document.get().createElement(PaperButtonElement.TAG), STYLE);
+  }
 
-	public void setIcon(String ico) {
-		getPaperElement().setIcon(ico);
-	}
+  public PaperButton(final Element element, String styleName) {
+    super(element);
+    if (styleName != null && !styleName.equalsIgnoreCase(STYLE)) {
+      styleName = STYLE + " " + styleName;
+    }
+    setStyleName(styleName);
+    textNode = Document.get().createTextNode("");
+    element.appendChild(textNode);
+  }
 
-	public boolean isRaisedButton() {
-		return getPaperElement().isRaisedButton();
-	}
+  @Override
+  public String getIcon() {
+    return getPaperElement().getIcon();
+  }
 
-	public void setRaisedButton(boolean status) {
-		getPaperElement().setRaisedButton(status);
-	}
+  @Override
+  public String getIconSrc() {
+    return getPaperElement().getIconSrc();
+  }
 
-	@Override
-	protected PaperButtonElement getPaperElement() {
-		return getElement().cast();
-	}
+  @Deprecated
+  public String getLabel() {
+    return getPaperElement().getLabel();
+  }
+
+  @Override
+  protected PaperButtonElement getPaperElement() {
+    return getElement().cast();
+  }
+
+  @Override
+  public String getText() {
+    return textNode.getData();
+  }
+
+  public boolean isRaisedButton() {
+    return getPaperElement().isRaisedButton();
+  }
+
+  @Override
+  public void setIcon(final String ico) {
+    getPaperElement().setIcon(ico);
+  }
+
+  @Override
+  public void setIconSrc(final String iconsrc) {
+    getPaperElement().setIconSrc(iconsrc);
+  }
+
+  @Deprecated
+  public void setLabel(final String lbl) {
+    getPaperElement().setLabel(lbl);
+  }
+
+  public void setRaisedButton(final boolean status) {
+    getPaperElement().setRaisedButton(status);
+  }
+
+  @Override
+  public void setText(final String text) {
+    textNode.setData(text);
+  }
 
 }
