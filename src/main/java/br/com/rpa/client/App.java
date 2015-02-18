@@ -17,7 +17,6 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Image;
-import com.google.gwt.user.client.ui.InlineLabel;
 import com.google.gwt.user.client.ui.RootPanel;
 
 /**
@@ -31,9 +30,13 @@ public class App implements EntryPoint {
   public void onModuleLoad() {
     // Creating a paper button.
     final PaperButton button = new PaperButton();
-    button.setIcon("menu");
-    button.setText("Botão");
+    button.setText("Paper button");
     button.setRaisedButton(true);
+    assert button.getText().equals("Paper button");
+    final CoreIconButton coreIconBtn = new CoreIconButton();
+    coreIconBtn.setText("CoreIconBtn");
+    coreIconBtn.setIcon("close");
+    assert coreIconBtn.getText().equals("CoreIconBtn");
 
     final PaperDialog dialog = new PaperDialog();
     dialog.setOpened(true);
@@ -78,10 +81,10 @@ public class App implements EntryPoint {
       }
     });
 
-    final CoreIconButton coreIconBtn = new CoreIconButton();
-    coreIconBtn.setIcon("folder");
-    coreIconBtn.setHTML(new InlineLabel("somelabel").getElement().getString());
-
+    final CoreIconButton coreIconBtn2 = new CoreIconButton();
+    coreIconBtn2.setIcon("folder");
+    coreIconBtn2.setText("somelabel");
+    assert coreIconBtn2.getText().equals("somelabel");
     final CoreIcon coreIcon = new CoreIcon();
     coreIcon.setIcon("polymer");
 
@@ -98,18 +101,20 @@ public class App implements EntryPoint {
     });
 
     RootPanel.get().add(button);
+    RootPanel.get().add(coreIconBtn);
     RootPanel.get().add(checkbox);
     RootPanel.get().add(dialog);
     RootPanel.get().add(paperBtn);
     RootPanel.get().add(input);
     RootPanel.get().add(fab);
     RootPanel.get().add(fabmini);
-    RootPanel.get().add(coreIconBtn);
+    RootPanel.get().add(coreIconBtn2);
     RootPanel.get().add(coreIcon);
     RootPanel.get().add(customPaperBtn);
 
     // Creating uiBinder for polymer elements
     final PolymerTest uiPolymer = new PolymerTest("Teste");
+    // FIXME: This text does not work because "label" is deprecated
     RootPanel.get().add(uiPolymer);
 
     final PaperFab fabWrapped = PaperFab.wrap(DOM.getElementById("rootfab"));
