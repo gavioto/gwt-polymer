@@ -41,7 +41,9 @@ public class PaperButton extends PaperFocusable implements HasIcon, HasText {
     if (styleName != null && !styleName.equalsIgnoreCase(STYLE)) {
       styleName = STYLE + " " + styleName;
     }
-    setStyleName(styleName);
+    if (!styleName.isEmpty()) {
+      setStyleName(styleName);
+    }
     textNode = Document.get().createTextNode("");
     element.appendChild(textNode);
   }
