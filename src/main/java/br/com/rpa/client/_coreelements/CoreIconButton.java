@@ -4,9 +4,10 @@ import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.ButtonBase;
+import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.RootPanel;
 
-public class CoreIconButton extends ButtonBase implements HasIcon {
+public class CoreIconButton extends ButtonBase implements HasIcon, HasText {
 
   public static CoreIconButton wrap(final Element element) {
     // Assert that the element is attached.
