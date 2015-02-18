@@ -16,6 +16,8 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.Image;
+import com.google.gwt.user.client.ui.InlineLabel;
 import com.google.gwt.user.client.ui.RootPanel;
 
 /**
@@ -36,8 +38,15 @@ public class App implements EntryPoint {
     final PaperDialog dialog = new PaperDialog();
     dialog.setOpened(true);
     dialog.setHeading("Some heading");
-    dialog.addParagraphContent("Some content");
+    /* dialog.addParagraphContent("Some content"); */
+    dialog.setHTML(new Image("http://lorempixel.com/500/200").getElement().getString());
     dialog.setLayered(true);
+    final PaperButton dismissive = new PaperButton();
+    dismissive.setText("close");
+    final PaperButton ok = new PaperButton();
+    ok.setIcon("done");
+    ok.setText("Done");
+    dialog.addActionButtons(dismissive, 0, ok);
 
     final PaperIconButton paperBtn = new PaperIconButton();
     paperBtn.setText("Icon btn");
@@ -71,6 +80,7 @@ public class App implements EntryPoint {
 
     final CoreIconButton coreIconBtn = new CoreIconButton();
     coreIconBtn.setIcon("folder");
+    coreIconBtn.setHTML(new InlineLabel("somelabel").getElement().getString());
 
     final CoreIcon coreIcon = new CoreIcon();
     coreIcon.setIcon("polymer");

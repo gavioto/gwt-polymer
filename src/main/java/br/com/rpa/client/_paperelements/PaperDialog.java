@@ -10,139 +10,158 @@ import com.google.gwt.user.client.ui.FocusWidget;
 
 public class PaperDialog extends FocusWidget {
 
-	public static final String STYLE = "";
+  public static final String STYLE = "";
 
-	protected List<ParagraphElement> paragraphs;
+  protected List<ParagraphElement> paragraphs;
 
-	public PaperDialog() {
-		this(Document.get().createElement(PaperDialogElement.TAG));
-	}
+  public PaperDialog() {
+    this(Document.get().createElement(PaperDialogElement.TAG));
+  }
 
-	public PaperDialog(Element elem) {
-		this(elem, STYLE);
-	}
+  public PaperDialog(final Element elem) {
+    this(elem, STYLE);
+  }
 
-	public PaperDialog(Element element, String styleName) {
-		super(element);
-		if (styleName != null && !styleName.equalsIgnoreCase(STYLE)) {
-			styleName = STYLE + " " + styleName;
-		}
-		setStyleName(styleName);
-		paragraphs = new ArrayList<ParagraphElement>();
-	}
+  public PaperDialog(final Element element, String styleName) {
+    super(element);
+    if (styleName != null && !styleName.equalsIgnoreCase(STYLE)) {
+      styleName = STYLE + " " + styleName;
+    }
+    if (!styleName.isEmpty()) {
+      setStyleName(styleName);
+    }
+    paragraphs = new ArrayList<ParagraphElement>();
+  }
 
-	public void addParagraphContent(String... content){
-		for(String txt : content){
-			ParagraphElement p = Document.get().createPElement();
-			p.setInnerHTML(txt);
-			paragraphs.add(p);
-		}
+  public void addActionButtons(final PaperButton dismissive, final int autoFocusIndex,
+      final PaperButton... affirmatives) {
+    if (dismissive != null) {
+      dismissive.getElement().setAttribute("dismissive", "");
+      getPaperElement().appendChild(dismissive.getElement());
+    }
 
-		if(!paragraphs.isEmpty()){
-			buildContent();
-		}
-	}
+    int focus = -1;
+    for (final PaperFocusable btn : affirmatives) {
+      focus++;
+      btn.getElement().setAttribute("affirmative", "");
+      if (autoFocusIndex >= 0 && focus == autoFocusIndex) {
+        btn.getElement().setAttribute("autofocus", "");
+      }
+      getPaperElement().appendChild(btn.getElement());
+    }
 
-	public void addParagraphContent(ParagraphElement... content){
-		for(ParagraphElement p : content){
-			paragraphs.add(p);
-		}
+  }
 
-		if(!paragraphs.isEmpty()){
-			buildContent();
-		}
-	}
+  public void addParagraphContent(final ParagraphElement... content) {
+    for (final ParagraphElement p : content) {
+      paragraphs.add(p);
+    }
 
-	private void buildContent(){
-		for(ParagraphElement p : paragraphs){
-			getPaperElement().appendChild(p);
-		}
-	}
+    if (!paragraphs.isEmpty()) {
+      buildContent();
+    }
+  }
 
-	public void addActionButtons(PaperButton dismissive, int autoFocusIndex, PaperButton... affirmatives){
-		if(dismissive != null){
-			dismissive.getElement().setAttribute("dismissive", "dismissive");
-			getPaperElement().appendChild( dismissive.getElement() );
-		}
+  public void addParagraphContent(final String... content) {
+    for (final String txt : content) {
+      final ParagraphElement p = Document.get().createPElement();
+      p.setInnerHTML(txt);
+      paragraphs.add(p);
+    }
 
-		int focus = -1;
-		for(PaperButton btn : affirmatives){
-			focus++;
-			btn.getElement().setAttribute("affirmative", "affirmative");
-			if(autoFocusIndex >= 0 && focus == autoFocusIndex){
-				btn.getElement().setAttribute("autofocus", "autofocus");
-			}
-			getPaperElement().appendChild( btn.getElement() );
-		}
+    if (!paragraphs.isEmpty()) {
+      buildContent();
+    }
+  }
 
-	}
+  private void buildButtons() {
 
-	private void buildButtons(){
+  }
 
-	}
+  private void buildContent() {
+    for (final ParagraphElement p : paragraphs) {
+      getPaperElement().appendChild(p);
+    }
+  }
 
-	public void toggle(){
-		getPaperElement().toggle();
-	}
+  public void close() {
+    getPaperElement().close();
+  }
 
-	public boolean isOpened() {
-		return getPaperElement().isOpened();
-	}
+  public String getCloseSelector() {
+    return getPaperElement().getCloseSelector();
+  }
 
-	public void setOpened(boolean status) {
-		getPaperElement().setOpened(status);
-	}
+  public String getHeading() {
+    return getPaperElement().getHeading();
+  }
 
-	public boolean isBackdrop() {
-		return getPaperElement().isBackdrop();
-	}
+  protected PaperDialogElement getPaperElement() {
+    return getElement().cast();
+  }
 
-	public void setBackdrop(boolean status) {
-		getPaperElement().setBackdrop(status);
-	}
+  public String getTransition() {
+    return getPaperElement().getTransition();
+  }
 
-	public boolean isLayered() {
-		return getPaperElement().isLayered();
-	}
+  public boolean isAutoCloseDisabled() {
+    return getPaperElement().isAutoCloseDisabled();
+  }
 
-	public void setLayered(boolean status) {
-		getPaperElement().setLayered(status);
-	}
+  public boolean isBackdrop() {
+    return getPaperElement().isBackdrop();
+  }
 
-	public boolean isAutoCloseDisabled() {
-		return getPaperElement().isAutoCloseDisabled();
-	}
+  public boolean isLayered() {
+    return getPaperElement().isLayered();
+  }
 
-	public void setAutoCloseDisabled(boolean status) {
-		getPaperElement().setAutoCloseDisabled(status);
-	}
+  public boolean isOpened() {
+    return getPaperElement().isOpened();
+  }
 
-	public String getCloseSelector() {
-		return getPaperElement().getCloseSelector();
-	}
+  public void open() {
+    getPaperElement().open();
+  }
 
-	public void setCloseSelector(String selector) {
-		getPaperElement().setCloseSelector(selector);
-	}
+  public void resizeHandler() {
+    getPaperElement().resizeHandler();
+  }
 
-	public String getHeading() {
-		return getPaperElement().getHeading();
-	}
+  public void setAutoCloseDisabled(final boolean status) {
+    getPaperElement().setAutoCloseDisabled(status);
+  }
 
-	public void setHeading(String heading) {
-		getPaperElement().setHeading(heading);
-	}
+  public void setBackdrop(final boolean status) {
+    getPaperElement().setBackdrop(status);
+  }
 
-	public String getTransition(){
-		return getPaperElement().getTransition();
-	}
+  public void setCloseSelector(final String selector) {
+    getPaperElement().setCloseSelector(selector);
+  }
 
-	public void setTransition(String transition) {
-		getPaperElement().setTransition(transition);
-	}
+  public void setHeading(final String heading) {
+    getPaperElement().setHeading(heading);
+  }
 
-	protected PaperDialogElement getPaperElement() {
-		return getElement().cast();
-	}
+  public void setHTML(final String html) {
+    getPaperElement().setInnerHTML(html);
+  }
+
+  public void setLayered(final boolean status) {
+    getPaperElement().setLayered(status);
+  }
+
+  public void setOpened(final boolean status) {
+    getPaperElement().setOpened(status);
+  }
+
+  public void setTransition(final String transition) {
+    getPaperElement().setTransition(transition);
+  }
+
+  public void toggle() {
+    getPaperElement().toggle();
+  }
 
 }
