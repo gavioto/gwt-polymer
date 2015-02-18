@@ -40,7 +40,9 @@ public class CoreIcon extends Widget implements HasIcon {
     if (styleName != null && !styleName.equalsIgnoreCase(STYLE)) {
       styleName = STYLE + " " + styleName;
     }
-    setStyleName(styleName);
+    if (!styleName.isEmpty()) {
+      setStyleName(styleName);
+    }
   }
 
   public String getAlt() {
