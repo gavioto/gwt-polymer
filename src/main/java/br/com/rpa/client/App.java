@@ -9,13 +9,13 @@ import br.com.rpa.client._paperelements.PaperDialog;
 import br.com.rpa.client._paperelements.PaperFab;
 import br.com.rpa.client._paperelements.PaperIconButton;
 import br.com.rpa.client._paperelements.PaperInput;
+import br.com.rpa.client._paperelements.PaperToast;
 import br.com.rpa.client.ui.PolymerTest;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.DOM;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.RootPanel;
 
@@ -51,6 +51,8 @@ public class App implements EntryPoint {
     ok.setText("Done");
     dialog.addActionButtons(dismissive, 0, ok);
 
+    final PaperToast toast = new PaperToast();
+
     final PaperIconButton paperBtn = new PaperIconButton();
     paperBtn.setText("Icon btn");
     paperBtn.setRaisedButton(true);
@@ -77,7 +79,8 @@ public class App implements EntryPoint {
     fab.addClickHandler(new ClickHandler() {
       @Override
       public void onClick(final ClickEvent event) {
-        Window.alert("Teste!!");
+        toast.setText("Test!!");
+        toast.show();
       }
     });
 
@@ -96,7 +99,8 @@ public class App implements EntryPoint {
     customPaperBtn.addClickHandler(new ClickHandler() {
       @Override
       public void onClick(final ClickEvent event) {
-        Window.alert("It works!");
+        toast.setText("It works!");
+        toast.show();
       }
     });
 
@@ -111,6 +115,7 @@ public class App implements EntryPoint {
     RootPanel.get().add(coreIconBtn2);
     RootPanel.get().add(coreIcon);
     RootPanel.get().add(customPaperBtn);
+    RootPanel.get().add(toast);
 
     // Creating uiBinder for polymer elements
     final PolymerTest uiPolymer = new PolymerTest("Teste");
@@ -121,7 +126,8 @@ public class App implements EntryPoint {
     fabWrapped.addClickHandler(new ClickHandler() {
       @Override
       public void onClick(final ClickEvent event) {
-        Window.alert("Wrapped PaperFab");
+        toast.setText("Wrapped PaperFab");
+        toast.show();
       }
     });
     fabWrapped.setMini(true);
