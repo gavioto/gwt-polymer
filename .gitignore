@@ -18,3 +18,4 @@ target/*war
 .settings/org.eclipse.jdt.ui.prefs
 .settings/org.eclipse.wst.jsdt.ui.prefs
 target/*
+/target/
